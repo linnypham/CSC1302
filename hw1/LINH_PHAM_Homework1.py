@@ -5,27 +5,49 @@ class Location:
         self.x=x
         self.y=y
     def __str__(self):
-        pass
+        return (self.x,self.y)
 class Car:
-    def __init__(self,car_name,location,cost_per_mile):#TODO: Implement the Car class according to the given UML class diagram and descriptions
-        self.car_name=car_name
+    def __init__(self,name,location,cost):#TODO: Implement the Car class according to the given UML class diagram and descriptions
+        self.car_name=name
         self.location=location
-        self.cost_per_mile=cost_per_mile
+        self.cost_per_mile=cost
     def __str__(self):
-        pass
-    def move_to(self):
-        pass
+        return (self.car_name,self.location,self.cost_per_mile)
+    def move_to(self,new_x,new_y):
+        self.x=new_x
+        self.y=new_y
+
 class Passenger:
-    def __init__(self,passenger_name,location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
-        self.passenger_name=passenger_name
+    def __init__(self,name,location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
+        self.passenger_name=name
         self.location=location
     def __str__(self):
-        pass
-    def move_to(self):
-        pass
+        return (self.passenger_name,location)
+    def move_to(self,new_x,new_y):
+        self.x=new_x
+        self.y=new_y
 class RideSharingApp:
-    def __init__(self,cars):#TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
-    
+    def __init__(self):#TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
+        self.cars=[]
+        self.passengers=[]
+    def add_car(self,car):
+        self.cars.append(car)
+
+    def add_passenger(self,passenger):
+        self.passengers.append(passenger)
+
+    def remove_car(self,car):
+        sef.cars.remove(car)
+
+    def remove_passenger(self,passenger):
+        self.passengers.remove(passenger)
+
+    def find_cheapest_car(self,passenger):
+        pass
+
+    def find_nearest_car(self,passenger):
+        pass
+
 
 #For the remaining code (after this line), no modification is required
 print('---------------------Object creation------------------')
