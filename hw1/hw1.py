@@ -1,16 +1,30 @@
 import math
 
 class Location:
-    #TODO: Implement the Location class according to the given UML class diagram and descriptions
-
+    def __init__(self,x,y):#TODO: Implement the Location class according to the given UML class diagram and descriptions
+        self.x=x
+        self.y=y
+    def __str__(self):
+        pass
 class Car:
-    #TODO: Implement the Car class according to the given UML class diagram and descriptions
-    
+    def __init__(self,car_name,location,cost_per_mile):#TODO: Implement the Car class according to the given UML class diagram and descriptions
+        self.car_name=car_name
+        self.location=location
+        self.cost_per_mile=cost_per_mile
+    def __str__(self):
+        pass
+    def move_to(self):
+        pass
 class Passenger:
-    #TODO: Implement the Passenger class according to the given UML class diagram and descriptions
-    
+    def __init__(self,passenger_name,location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
+        self.passenger_name=passenger_name
+        self.location=location
+    def __str__(self):
+        pass
+    def move_to(self):
+        pass
 class RideSharingApp:
-    #TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
+    def __init__(self,cars):#TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
     
 
 #For the remaining code (after this line), no modification is required
