@@ -1,46 +1,46 @@
 import math
 
 class Location:
-    def __init__(self,x,y):#TODO: Implement the Location class according to the given UML class diagram and descriptions
-        self.x=x
-        self.y=y
+    def __init__(self, x, y): #TODO: Implement the Location class according to the given UML class diagram and descriptions
+        self.x = x
+        self.y = y
     def __str__(self):
-        return (self.x,self.y)
+        return '({},{})'.format(self.x,self.y)
 class Car:
-    def __init__(self,name,location,cost):#TODO: Implement the Car class according to the given UML class diagram and descriptions
-        self.car_name=name
-        self.location=location
-        self.cost_per_mile=cost
+    def __init__(self, name, location, cost): #TODO: Implement the Car class according to the given UML class diagram and descriptions
+        self.location = location
+        self.car_name = name
+        self.cost_per_mile = cost
     def __str__(self):
-        return (self.car_name,self.location,self.cost_per_mile)
-    def move_to(self,new_x,new_y):
-        self.x=new_x
-        self.y=new_y
+        return '[{},{},{}]'.format(self.car_name, self.location, self.cost_per_mile)
+    def move_to (self, new_x, new_y):
+        self.x = new_x
+        self.y = new_y
 
 class Passenger:
-    def __init__(self,name,location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
-        self.passenger_name=name
-        self.location=location
+    def __init__(self, name, location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
+        self.passenger_name = name
+        self.location = location
     def __str__(self):
-        return (self.passenger_name,location)
-    def move_to(self,new_x,new_y):
-        self.x=new_x
-        self.y=new_y
+        return '[{}, {}]'.format(self.passenger_name, self.location)
+    def move_to (self, new_x, new_y):
+        self.x = new_x
+        self.y = new_y
 class RideSharingApp:
     def __init__(self):#TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
-        self.cars=[]
-        self.passengers=[]
+        self.Cars = []
+        self.Passengers = []
     def add_car(self,car):
-        self.cars.append(car)
+        self.Cars.append(car)
 
-    def add_passenger(self,passenger):
-        self.passengers.append(passenger)
+    def add_passenger(self, passenger):
+        self.Passengers.append(passenger)
 
-    def remove_car(self,car):
-        sef.cars.remove(car)
+    def remove_car (self, car):
+        self.Cars.remove(car)
 
     def remove_passenger(self,passenger):
-        self.passengers.remove(passenger)
+        self.Passengers.remove(passenger)
 
     def find_cheapest_car(self,passenger):
         pass
@@ -55,7 +55,7 @@ location1 = Location(2,1)
 location2 = Location(-4,1)
 car1 = Car('car1', location1, 0.61)
 car2 = Car('car2', location2, 0.50)
-print('Car object 1 created:',car1)
+print('Car object 1 created:', car1)
 print('Car object 2 created:', car2)
 
 location3 = Location(-2,3)
