@@ -14,8 +14,8 @@ class Car:
     def __str__(self):
         return '[{},{},{}]'.format(self.car_name, self.location, self.cost_per_mile)
     def move_to (self, new_x, new_y):
-        self.x = new_x
-        self.y = new_y
+        self.location.x = new_x
+        self.location.y = new_y
 
 class Passenger:
     def __init__(self, name, location):#TODO: Implement the Passenger class according to the given UML class diagram and descriptions
@@ -24,8 +24,8 @@ class Passenger:
     def __str__(self):
         return '[{}, {}]'.format(self.passenger_name, self.location)
     def move_to (self, new_x, new_y):
-        self.x = new_x
-        self.y = new_y
+        self.location.x = new_x
+        self.location.y = new_y
 class RideSharingApp:
     def __init__(self):#TODO: Implement the RideSharingApp class according to the given UML class diagram and descriptions
         self.Cars = []
@@ -42,12 +42,20 @@ class RideSharingApp:
     def remove_passenger(self,passenger):
         self.Passengers.remove(passenger)
 
-    def find_cheapest_car(self,passenger):
-        pass
+    def find_cheapest_car(self, passenger):
+        cheapest_car = min(self.Cars, key=lambda car: car.cost_per_mile)
+        print ('Cheapest car for {}: {}, Cost per mile: {}'.format(passenger.passenger_name, cheapest_car.car_name, cheapest_car.cost_per_mile))
 
-    def find_nearest_car(self,passenger):
-        pass
+    def find_nearest_car(self, passenger):
+        min_distance = float('inf')
+        nearest_car = None
+        for car in self.Cars:
+            distance = math.sqrt((car.location.x - passenger.location.x) ** 2 + (car.location.y - passenger.location.y) ** 2)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_car = car
 
+        print ('Nearest car for {}: {}, Distance: {:.2f}'.format(passenger.passenger_name, nearest_car.car_name, min_distance))
 
 #For the remaining code (after this line), no modification is required
 print('---------------------Object creation------------------')
@@ -55,7 +63,7 @@ location1 = Location(2,1)
 location2 = Location(-4,1)
 car1 = Car('car1', location1, 0.61)
 car2 = Car('car2', location2, 0.50)
-print('Car object 1 created:', car1)
+print('Car object 1 created:',car1)
 print('Car object 2 created:', car2)
 
 location3 = Location(-2,3)
@@ -96,4 +104,3 @@ mobileApp.find_cheapest_car(passenger1)
 mobileApp.find_cheapest_car(passenger2)
 mobileApp.find_nearest_car(passenger1)
 mobileApp.find_nearest_car(passenger2)
-
