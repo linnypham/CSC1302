@@ -69,8 +69,8 @@ class PickupTruck (Car, Truck):
 
 vehicle1 = Car('Honda','Accord', 2023, 4)
 vehicle2 = Motorcycle('Honda', 'Fury', 2022, 'cruiser')
-vehicle3 = Truck('Toyota', 'Tundra', 2021, 100)
-vehicle4 = PickupTruck('Toyota', 'Tacoma', 2020, 70, 4, True)
+vehicle3 = Truck('Toyota', 'Tundra', 1900, 300)
+vehicle4 = PickupTruck('Toyota', 'Tacoma', 2020, 200, 4, True)
 
 vehicle1.honk()
 vehicle2.honk()
@@ -82,5 +82,6 @@ print(vehicle2.get_info())
 print(vehicle3.get_info())
 print(vehicle4.get_info())
 print()
-print("Is the Truck capcity at {} smaller than the Pickup Truck capacity at {}".format(vehicle3.capacity, vehicle4.capacity))
+print('Comparing Truck (Year:{} Capacity:{}) and PickupTruck (Year:{} Capacity:{})'.format(vehicle3.year, vehicle3.capacity, vehicle4.year, vehicle4.capacity))
+print("Is the Truck lesser than the Pickup Truck?")
 print(vehicle3 < vehicle4)
