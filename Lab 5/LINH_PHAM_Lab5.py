@@ -12,12 +12,12 @@ def binary_search(arr, target):
         if target == arr[mid]:
             print('Target = {}, Found at index = {}, Number of iterations = {}'.format(target, mid, iterations))
             return
+            
         elif target < arr[mid]:
             high = mid - 1
         else:
             low = mid + 1
     print('Target = {}, Found at index = {}, Number of iterations = {}'.format(target, '-1', iterations))
-    return -1, iterations
 
 target = input('Enter search key: ').lower()
 
