@@ -2,7 +2,6 @@ def partition(arr, low, high):
     pivot = arr[high]
     i = low
     print(f'Array segment before  partitioning: {arr[low:high+1]}, Pivot: {pivot}')
-
     for j in range(low, high):
         if arr[j] < pivot:
             arr[i], arr[j] = arr[j], arr[i]
