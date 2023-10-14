@@ -35,7 +35,8 @@ while option != '6':
     elif option == '3':  # Append
         try:
             write_name = input('Please enter a file name: ')
-            write_check = open(write_name+".txt", 'r')
+            write_check = open(write_name+".txt", 'r') #check for file existence
+            write_check.close()
             write_data = input('Please enter the text to be added: ')
             with open(write_name + ".txt", 'a') as write_file:
                 write_file.write(write_data)
@@ -49,7 +50,7 @@ while option != '6':
             with open(find_name+".txt", 'r') as find_file:
                 f = find_file.read()
                 if find_data in f:
-                    print(f.index(find_data))
+                    print(f'Index: {f.index(find_data)}')
                 else:
                     print('No result')
         except:
