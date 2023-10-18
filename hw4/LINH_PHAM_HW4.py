@@ -39,7 +39,7 @@ while option != '6':
             write_check.close()
             write_data = input('Please enter the text to be added: ')
             with open(write_name + ".txt", 'a') as write_file:
-                write_file.write(write_data)
+                write_file.write(write_data+'\n')
         except:
             print('An error occurred during the APPEND operation!')
 
@@ -52,7 +52,7 @@ while option != '6':
                 if find_data in f:
                     print(f'Index: {f.index(find_data)}')
                 else:
-                    print('No result')
+                    print('No results')
         except:
             print('An error occurred during the FIND operation!')
 
@@ -63,7 +63,7 @@ while option != '6':
 
             with open(export_name+".txt", 'r') as export_file:
                 csv_data = export_file.read()
-                rows = csv_data.split(' ')
+                rows = csv_data.split('\n')
                 with open(csv_name+".csv", 'w') as csv_file:
                     writer = csv.writer(csv_file)
                     writer.writerow(rows)
@@ -79,3 +79,4 @@ while option != '6':
         time.sleep(.4)
     print()
     option = chooseOption()
+print('Goodbye!!!')
