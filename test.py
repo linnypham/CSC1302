@@ -1,3 +1,4 @@
-a = '12324324'
-b = a[::-1]
-print(b)
+from selenium import webdriver
+
+browser = webdriver.Firefox()
+browser.get('http://selenium.dev/')
