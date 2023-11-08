@@ -68,12 +68,43 @@ def on_list_student_button_clicked():
     for record in records:
         txt.insert(END, f"PantherID: {record[0]}   Name:{record[1]}   Email:{record[2]}\n")
 
+#hw5
+def on_search_record_button_clicked():
+    pantherid = int(pantherid_entry.get())
+
+    cursor.execute('IF pantherid EXISTS IN')
+    pass
+
+def on_delete_record_button_clicked():
+    pass
+
+def on_update_record_button_clicked():
+    pass
+
+def on_export_record_button_clicked():
+    pass
+#hw5
+
 # Create buttons for adding and listing student records
 button_add = Button(master=app, text='Add Student', command=on_add_student_button_clicked)
 button_add.grid(row=3, column=0, columnspan=2)
 
 button_list = Button(master=app, text='List Students', command=on_list_student_button_clicked)
 button_list.grid(row=4, column=0, columnspan=2)
+
+#hw5
+button_search = Button(master=app, text='Search Record', command=on_search_record_button_clicked)
+button_search.grid(row=3, column=1, columnspan=2)
+
+button_delete = Button(master=app, text='Delete Record', command=on_delete_record_button_clicked)
+button_delete.grid(row=4, column=1, columnspan=2)
+
+button_update = Button(master=app, text='Update Record', command=on_update_record_button_clicked)
+button_update.grid(row=3, column=2, columnspan=2)
+
+button_export = Button(master=app, text='Delete Record', command=on_export_record_button_clicked)
+button_export.grid(row=4, column=2, columnspan=2)
+#hw5
 
 # Create a Text widget to display student records
 txt = Text(master=app, height=10, width=50)
