@@ -73,8 +73,8 @@ def on_list_student_button_clicked():
 
 #TODO: hw5 functions
 def on_search_record_button_clicked(): #TODO:search
-    pantherid_str = pantherid_entry.get()
-    name_entry.delete(0, END)
+    pantherid_str = pantherid_entry.get() #get id
+    name_entry.delete(0, END)#clear unnecessary datas
     email_entry.delete(0, END)
 
     if not pantherid_str: #checking if pantherid is filled
@@ -83,16 +83,18 @@ def on_search_record_button_clicked(): #TODO:search
 
     pantherid = int(pantherid_str) #change to integer
     cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}') #find all datas of pantherid
-    record = cursor.fetchone()
+    record = cursor.fetchone()#fetch the data
     if record:
-        txt.delete(0.0, END)
+        txt.delete(0.0, END)#clear the infos
         txt.insert(END, f'PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n')#print out the datas
     else:
         showinfo(message=f'No record was found for {pantherid}')
 def on_delete_record_button_clicked():  # TODO: delete
-    pantherid_str = pantherid_entry.get()
+    pantherid_str = pantherid_entry.get()#get id
+    name_entry.delete(0, END)#clear unnecessary datas
+    email_entry.delete(0, END)
 
-    if not pantherid_str:
+    if not pantherid_str:#check if id is filled
         showinfo(message='Please enter a PantherID to delete a record')
         return
 
@@ -101,7 +103,7 @@ def on_delete_record_button_clicked():  # TODO: delete
     record = cursor.fetchone()
     if record:
         cursor.execute(f'DELETE FROM students WHERE PantherID = {pantherid}')#delete datas of pantherid
-        conn.commit()
+        conn.commit()#commit to changing the data
     else:
         showinfo(message=f'No record was found for {pantherid}')
 def on_update_record_button_clicked():#TODO: update
