@@ -66,22 +66,48 @@ def on_list_student_button_clicked():
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     txt.insert(END, f'--- Student list as of {timestamp} ---\n')
     for record in records:
-        txt.insert(END, f"PantherID: {record[0]}   Name:{record[1]}   Email:{record[2]}\n")
+        txt.insert(END, f"PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n")
 
-#hw5
-def on_search_record_button_clicked():
-    pantherid = int(pantherid_entry.get())
+#hw5 functions
+def on_search_record_button_clicked(): #TODO:search
+    pantherid_str = pantherid_entry.get()
 
-    cursor.execute('IF pantherid EXISTS IN')
+    if not pantherid_str:
+        showinfo(message='Please enter a PantherID to search for a record')
+        return
+
+    pantherid = int(pantherid_str)
+    cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}')
+    record = cursor.fetchone()
+    if record:
+        txt.delete(0.0, END)
+        txt.insert(END, f'PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n')
+    else:
+        showinfo(message=f'No record was found for {pantherid}')
+
+
+def on_delete_record_button_clicked():#TODO: delete
     pass
 
-def on_delete_record_button_clicked():
-    pass
+def on_update_record_button_clicked():#TODO: update
+    pantherid_str = pantherid_entry.get()
+    name = name_entry.get()
+    email = email_entry.get()
 
-def on_update_record_button_clicked():
-    pass
 
-def on_export_record_button_clicked():
+    if not pantherid_str or not name or not email:
+        showinfo(message='Please enter a PantherID, Name, and Email to search for a record')
+        return
+
+    pantherid = int(pantherid_str)
+    cursor.execute(f'SELECT Name, Email FROM students WHERE PantherID = {pantherid}')
+    record=cursor.fetchone()
+    if record:
+        cursor.execute(f'UPDATE students SET Name =?,Email =? WHERE PantherID=?',(name,email,pantherid))
+        conn.commit()
+    else:
+        showinfo(message=f'No record was found for {pantherid}')
+def on_export_record_button_clicked():#TODO: export
     pass
 #hw5
 
@@ -92,7 +118,7 @@ button_add.grid(row=3, column=0, columnspan=2)
 button_list = Button(master=app, text='List Students', command=on_list_student_button_clicked)
 button_list.grid(row=4, column=0, columnspan=2)
 
-#hw5
+#hw5 buttons
 button_search = Button(master=app, text='Search Record', command=on_search_record_button_clicked)
 button_search.grid(row=3, column=1, columnspan=2)
 
