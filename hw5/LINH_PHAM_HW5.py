@@ -71,22 +71,22 @@ def on_list_student_button_clicked():
     for record in records:
         txt.insert(END, f"PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n")
 
-#hw5 functions
+#TODO: hw5 functions
 def on_search_record_button_clicked(): #TODO:search
     pantherid_str = pantherid_entry.get()
     name_entry.delete(0, END)
     email_entry.delete(0, END)
 
-    if not pantherid_str:
+    if not pantherid_str: #checking if pantherid is filled
         showinfo(message='Please enter a PantherID to search for a record')
         return
 
-    pantherid = int(pantherid_str)
-    cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}')
+    pantherid = int(pantherid_str) #change to integer
+    cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}') #find all datas of pantherid
     record = cursor.fetchone()
     if record:
         txt.delete(0.0, END)
-        txt.insert(END, f'PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n')
+        txt.insert(END, f'PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n')#print out the datas
     else:
         showinfo(message=f'No record was found for {pantherid}')
 def on_delete_record_button_clicked():  # TODO: delete
@@ -100,7 +100,7 @@ def on_delete_record_button_clicked():  # TODO: delete
     cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}')
     record = cursor.fetchone()
     if record:
-        cursor.execute(f'DELETE FROM students WHERE PantherID = {pantherid}')
+        cursor.execute(f'DELETE FROM students WHERE PantherID = {pantherid}')#delete datas of pantherid
         conn.commit()
     else:
         showinfo(message=f'No record was found for {pantherid}')
@@ -110,24 +110,24 @@ def on_update_record_button_clicked():#TODO: update
     email = email_entry.get()
 
 
-    if not pantherid_str or not name or not email:
+    if not pantherid_str or not name or not email: #check if all input fields are filled
         showinfo(message='Please enter a PantherID, Name, and Email to update a record')
         return
 
     pantherid = int(pantherid_str)
-    cursor.execute(f'SELECT Name, Email FROM students WHERE PantherID = {pantherid}')
+    cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}')
     record=cursor.fetchone()
     if record:
-        cursor.execute('UPDATE students SET Name =?,Email =? WHERE PantherID=?',(name,email,pantherid))
+        cursor.execute('UPDATE students SET Name =?,Email =? WHERE PantherID=?',(name,email,pantherid))#update to new datas
         conn.commit()
     else:
         showinfo(message=f'No record was found for {pantherid}')
 def on_export_record_button_clicked():#TODO: export
     cursor.execute('SELECT * from students')
-    with open('students.csv','w') as csv_file:
+    with open('students.csv','w') as csv_file:#create new csv file
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow([i[0] for i in cursor.description])
-        csv_writer.writerows(cursor)
+        csv_writer.writerow([i[0] for i in cursor.description])#write headers
+        csv_writer.writerows(cursor)#write datas
 #hw5
 
 # Create buttons for adding and listing student records
@@ -137,7 +137,7 @@ button_add.grid(row=3, column=0, columnspan=2)
 button_list = Button(master=app, text='List Students', command=on_list_student_button_clicked)
 button_list.grid(row=4, column=0, columnspan=2)
 
-#hw5 buttons
+#TODO:hw5 buttons
 button_search = Button(master=app, text='Search Record', command=on_search_record_button_clicked)
 button_search.grid(row=3, column=2, columnspan=2)
 
