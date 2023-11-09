@@ -1,7 +1,10 @@
+import csv
 from tkinter import Tk, Entry, Text, END, font, Label, Button, BOTH
 import sqlite3
 from tkinter.messagebox import showinfo
 from datetime import datetime
+
+
 
 # Create the main application window
 app = Tk()
@@ -71,6 +74,8 @@ def on_list_student_button_clicked():
 #hw5 functions
 def on_search_record_button_clicked(): #TODO:search
     pantherid_str = pantherid_entry.get()
+    name_entry.delete(0, END)
+    email_entry.delete(0, END)
 
     if not pantherid_str:
         showinfo(message='Please enter a PantherID to search for a record')
@@ -84,11 +89,21 @@ def on_search_record_button_clicked(): #TODO:search
         txt.insert(END, f'PantherID: {record[0]}   Name: {record[1]}   Email: {record[2]}\n')
     else:
         showinfo(message=f'No record was found for {pantherid}')
+def on_delete_record_button_clicked():  # TODO: delete
+    pantherid_str = pantherid_entry.get()
 
+    if not pantherid_str:
+        showinfo(message='Please enter a PantherID to delete a record')
+        return
 
-def on_delete_record_button_clicked():#TODO: delete
-    pass
-
+    pantherid = int(pantherid_str)
+    cursor.execute(f'SELECT * FROM students WHERE PantherID = {pantherid}')
+    record = cursor.fetchone()
+    if record:
+        cursor.execute(f'DELETE FROM students WHERE PantherID = {pantherid}')
+        conn.commit()
+    else:
+        showinfo(message=f'No record was found for {pantherid}')
 def on_update_record_button_clicked():#TODO: update
     pantherid_str = pantherid_entry.get()
     name = name_entry.get()
@@ -96,19 +111,23 @@ def on_update_record_button_clicked():#TODO: update
 
 
     if not pantherid_str or not name or not email:
-        showinfo(message='Please enter a PantherID, Name, and Email to search for a record')
+        showinfo(message='Please enter a PantherID, Name, and Email to update a record')
         return
 
     pantherid = int(pantherid_str)
     cursor.execute(f'SELECT Name, Email FROM students WHERE PantherID = {pantherid}')
     record=cursor.fetchone()
     if record:
-        cursor.execute(f'UPDATE students SET Name =?,Email =? WHERE PantherID=?',(name,email,pantherid))
+        cursor.execute('UPDATE students SET Name =?,Email =? WHERE PantherID=?',(name,email,pantherid))
         conn.commit()
     else:
         showinfo(message=f'No record was found for {pantherid}')
 def on_export_record_button_clicked():#TODO: export
-    pass
+    cursor.execute('SELECT * from students')
+    with open('students.csv','w') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([i[0] for i in cursor.description])
+        csv_writer.writerows(cursor)
 #hw5
 
 # Create buttons for adding and listing student records
@@ -120,21 +139,21 @@ button_list.grid(row=4, column=0, columnspan=2)
 
 #hw5 buttons
 button_search = Button(master=app, text='Search Record', command=on_search_record_button_clicked)
-button_search.grid(row=3, column=1, columnspan=2)
+button_search.grid(row=3, column=2, columnspan=2)
 
 button_delete = Button(master=app, text='Delete Record', command=on_delete_record_button_clicked)
-button_delete.grid(row=4, column=1, columnspan=2)
+button_delete.grid(row=4, column=2, columnspan=2)
 
 button_update = Button(master=app, text='Update Record', command=on_update_record_button_clicked)
-button_update.grid(row=3, column=2, columnspan=2)
+button_update.grid(row=3, column=4, columnspan=2)
 
-button_export = Button(master=app, text='Delete Record', command=on_export_record_button_clicked)
-button_export.grid(row=4, column=2, columnspan=2)
+button_export = Button(master=app, text='Export Record', command=on_export_record_button_clicked)
+button_export.grid(row=4, column=4, columnspan=2)
 #hw5
 
 # Create a Text widget to display student records
 txt = Text(master=app, height=10, width=50)
-txt.grid(row=5, column=0, columnspan=2)
+txt.grid(row=5, column=0, columnspan=6)
 
 # Start the main application loop
 app.mainloop()
