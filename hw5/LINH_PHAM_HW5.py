@@ -9,7 +9,7 @@ from datetime import datetime
 # Create the main application window
 app = Tk()
 app.title('Student Records')
-app.geometry('600x600')
+app.geometry('800x600')
 
 # Create a custom font with your desired size and other attributes
 custom_font = font.nametofont("TkDefaultFont")  # Start with the default font
@@ -149,7 +149,7 @@ button_delete.grid(row=4, column=2, columnspan=2)
 button_update = Button(master=app, text='Update Record', command=on_update_record_button_clicked)
 button_update.grid(row=3, column=4, columnspan=2)
 
-button_export = Button(master=app, text='Export Record', command=on_export_record_button_clicked)
+button_export = Button(master=app, text='Export to CSV', command=on_export_record_button_clicked)
 button_export.grid(row=4, column=4, columnspan=2)
 #hw5
 
