@@ -20,12 +20,18 @@ list_mpg_highest = []
 list_mpg_highest.append(mpg_highest['name'])    #put names into a list
 print('Most fuel efficient car: ', list_mpg_highest)
 
+weight = df['weight']   #put data of row 'weight' into weight
+max_weight = weight.max()   #biggest weight
+min_weight = weight.min()   #smallest weight
+avg_weight = weight.mean()  #average weight
+print(f'Minimum Weight: {min_weight}, Maximum Weight: {max_weight}, Average Weight: {avg_weight}')
+
+
 new_df = df.dropna() #drop rows with missing values
 print('Shape after removing the missing values: ',new_df.shape)
 
 
 mpg = df['mpg'] #put data of row 'mpg' into mpg
-weight = df['weight']   #put data of row 'weight' into weight
 displacement = df['displacement'] #put data of row 'displacement' into displacement
 
 plt.subplot(2, 1, 1)    #1st subplot
