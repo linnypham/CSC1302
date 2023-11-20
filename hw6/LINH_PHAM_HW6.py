@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('car_data.csv') #read csv
-print('Shape of the dataframe: ',df.shape)
+print('Shape of the dataframe: ', df.shape)
 
 jap_v6 = df[(df['origin'] == 'japan') & (df['cylinders'] == 6)] #find rows base on parameters
 list_jap_v6 = jap_v6['name'].to_list()  #put names into a list
@@ -28,7 +28,7 @@ print(f'Minimum Weight: {min_weight}, Maximum Weight: {max_weight}, Average Weig
 
 
 new_df = df.dropna() #drop rows with missing values
-print('Shape after removing the missing values: ',new_df.shape)
+print('Shape after removing the missing values: ', new_df.shape)
 
 
 mpg = df['mpg'] #put data of row 'mpg' into mpg
@@ -38,7 +38,7 @@ plt.subplot(2, 1, 1)    #1st subplot
 plt.scatter(mpg, weight, label='weight')    #mpg vs weight
 plt.ylabel('weight')
 
-plt.subplot(2, 1, 2)    #2nd subploy
+plt.subplot(2, 1, 2)    #2nd subplot
 plt.scatter(mpg, displacement, label='displacement')    #mpg vs displacement
 plt.ylabel('displacement')
 plt.xlabel('mpg')
