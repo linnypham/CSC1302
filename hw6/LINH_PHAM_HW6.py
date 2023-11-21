@@ -6,11 +6,11 @@ print('Shape of the dataframe: ', df.shape)
 
 jap_v6 = df[(df['origin'] == 'japan') & (df['cylinders'] == 6)] #find rows base on parameters
 list_jap_v6 = jap_v6['name'].to_list()  #put names into a list
-print('Japanese v6 car:',list_jap_v6)
+print('Japanese v6 car:', list_jap_v6)
 
 no_hp = df[df['horsepower'].isnull()]   #find rows that have Null horsepower
 list_no_hp = no_hp['name'].to_list()    #put names into a list
-print('Cars with missing horsepower data: ',list_no_hp)
+print('Cars with missing horsepower data: ', list_no_hp)
 
 mpg_20 = df[df['mpg'] >= 20] #find rows base on parameters
 print('Number of cars having mpg >= 20:', len(mpg_20)) #print the number of rows
