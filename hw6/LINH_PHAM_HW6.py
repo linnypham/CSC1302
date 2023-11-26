@@ -24,7 +24,7 @@ weight = df['weight']   #put data of row 'weight' into weight
 max_weight = weight.max()   #biggest weight
 min_weight = weight.min()   #smallest weight
 avg_weight = weight.mean()  #average weight
-print(f'Minimum Weight: {min_weight}, Maximum Weight: {max_weight}, Average Weight: {avg_weight}')
+print(f'Minimum Weight: {min_weight}, Maximum Weight: {max_weight}, Average Weight: {avg_weight:.2f}')
 
 
 new_df = df.dropna() #drop rows with missing values
